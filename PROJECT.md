@@ -1,6 +1,6 @@
 # ROPE DUEL 3D
 
-**Status:** ✅ Shipped candidate, live verification pending
+**Status:** ✅ Shipped and verified
 **Last updated:** 2026-10-17
 
 ## What is this?
@@ -47,13 +47,20 @@ A from-scratch Three.js 3D rebuild of ROPE DUEL. Two articulated cats, SULTAN BI
 - Rejected 2D direction: shipped separately as `rope-duel-v2`; this project exists because the owner explicitly requested the 3D model.
 
 ## Verification
-- Local 3D smoke run: Three.js scene rendered, no page errors, approximately 50k triangles desktop, approximately 47k phone.
-- Live feed chain is inherited from the verified multi-provider feed and remains labelled by venue.
-- Final live byte and design-closeout verdict to be appended after GitHub Pages publication.
+- **Acceptance probe: 54/54 PASS on the deployed URL** (`tools/probe3d.cjs --base https://shojaee76-cmyk.github.io/rope-duel-3d/`). Covers: zero page errors, bundled-font render hashes, WebGL geometry (51k tris, 220 draw calls), both cats placed apart on the rope, rope hanging under the paws, HUD price matching the feed, meter sums and direction, labels, no overflow at 390/1440, market pressure selecting the attacking side, both sides attacking under alternating flow, hits landing, a raised guard blocking, HP draining, KO banner with a real stamped price, round reset, and frame rate.
+- **Live bytes: 10/10 files byte-identical** to the local build (CRLF-normalized SHA-256), including both vendored three.js files.
+- **Live feed verified**: provider badge names the venue, price cross-checked against an independent REST ticker (0.05% deviation, normal cross-venue spread).
+- **designcheck on the shipped URL: PASS, 0 hard findings, 3 soft** (`rope-duel-3d-ship`). Soft findings accepted with reasons:
+  - 7-20 text nodes at 11px: deliberate dense exchange-HUD microcopy; every critical value (price, HP, meter percentages, fighter state) is 12px or larger and passes contrast.
+  - Vision reviewer asked to remove the 3D duel: rejected. The duel IS the product per the owner brief; its findings about the sword "clipping the price" contradict measured geometry (the models project entirely below the HUD band).
+  - Convergence with `rope-duel-v2` on radii/type: deliberate. Both are editions of the same product and share its design language; the skeleton, medium (WebGL vs canvas) and interaction are different.
+- Screenshots: `qa/d1-idle.png`, `qa/d2-fight.png`, `qa/p1-idle.png`, `qa/p2-fight.png` (captured from the deployed URL).
 
 ## Progress log
-- 2026-10-17: Built new Three.js 0.186 scene from scratch, procedural articulated cats, costumes, swords, rope, candle wall, lights, arena depth, responsive HUD, and smoke screenshots. Vision review caught and fixed hidden eyes, downward swords from screen-space angle conversion, excessive rope sag, and weak arena grounding.
+- 2026-10-17: Built the Three.js 0.186 scene from scratch: articulated procedural cats with costumes and swords, analytic catenary rope, live candle wall, ticker band, bronze posts, depth columns, floor glow, sparks, camera drift and shake, adaptive quality governor, responsive HUD, and a 54-check acceptance probe. Vision review caught and fixed hidden eyes (spheres inside the skull), downward swords (2D screen-space angles not mirrored for a Y-up world), excessive rope sag, floating paws, an unreadable candle wall, and low-contrast microcopy.
+- 2026-10-17: Shipped to GitHub Pages, verified live bytes and live probe, designcheck PASS with 0 hard findings, Desktop launcher installed.
 
 ## Next steps
-- [ ] Publish to GitHub Pages
-- [ ] Run deployed 3D probe and final design-closeout
+- [ ] Owner play-test on phone; report feel and framing
+- [ ] Optional: stronger cat material detail (fur normal map) if he wants a closer camera
+
