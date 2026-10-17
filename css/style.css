@@ -159,17 +159,17 @@ body{
 .fighter--sell{border-top:2px solid var(--sell);text-align:right;}
 .fighter-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
 .fighter--sell .fighter-top{flex-direction:row;}
-.tag{font-size:10px;letter-spacing:.18em;color:var(--ink-dim);}
+.tag{font-size:11px;letter-spacing:.16em;color:#A7AEBA;}
 .fighter--buy .tag{color:var(--buy);}
 .fighter--sell .tag{color:var(--sell);}
 .rounds{font-family:var(--font-mono);font-weight:700;font-size:18px;line-height:1;color:var(--ink);}
 .fighter-name{font-family:var(--font-display);font-size:clamp(18px,2.2vw,24px);line-height:1;letter-spacing:.01em;}
-.fighter-role{font-size:10px;letter-spacing:.06em;color:var(--ink-faint);margin-top:2px;text-transform:uppercase;}
+.fighter-role{font-size:11px;letter-spacing:.05em;color:#8A909B;margin-top:2px;text-transform:uppercase;}
 .bar{height:6px;border-radius:var(--r);background:rgba(255,255,255,.07);margin:10px 0 8px;overflow:hidden;}
 .fighter--sell .bar{transform:scaleX(-1);}
 .bar-fill{display:block;height:100%;width:0%;border-radius:var(--r);background:linear-gradient(90deg,var(--buy-deep),var(--buy));transition:width .3s var(--ease);}
 .fighter--sell .bar-fill{background:linear-gradient(90deg,var(--sell-deep),var(--sell));}
-.fighter-state{font-size:11px;letter-spacing:.14em;color:var(--ink-dim);text-transform:uppercase;}
+.fighter-state{font-size:12px;letter-spacing:.12em;color:#A7AEBA;text-transform:uppercase;}
 /* action reactions */
 .fighter[data-act="attack"]{transform:translateY(-6px) scale(1.015);box-shadow:0 24px 54px -18px rgba(0,0,0,.95);}
 .fighter--buy[data-act="attack"]{border-color:var(--buy);}
