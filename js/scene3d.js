@@ -338,9 +338,11 @@ export function createScene3D(host) {
       g.fillStyle = "rgba(240,180,41,.95)";
       g.font = "700 21px 'Space Mono', monospace";
       g.fillText(price ? "$" + price.toLocaleString("en-US", { maximumFractionDigits: 0 }) : "--", 176, 30);
-      g.fillStyle = "rgba(236,238,242,.4)";
-      g.font = "600 14px 'Space Mono', monospace";
-      g.fillText("1s · LIVE ORDER FLOW", 470, 30);
+      g.fillStyle = "rgba(236,238,242,.42)";
+      g.font = "600 15px 'Space Mono', monospace";
+      g.textAlign = "right";
+      g.fillText("1s CANDLES  ·  LIVE ORDER FLOW", 1000, 30);
+      g.textAlign = "left";
       wall.tex.needsUpdate = true;
     },
     setTicker: function (items, t) {

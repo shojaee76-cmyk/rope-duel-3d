@@ -121,12 +121,15 @@ function drawMiniChart(candles) {
   var cv = $("chart-canvas"); if (!cv || cv.clientWidth < 10 || !candles || candles.length < 2) return;
   var dpr = Math.min(2, window.devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight;
   if (cv.width !== Math.floor(w * dpr) || cv.height !== Math.floor(h * dpr)) { cv.width = Math.floor(w * dpr); cv.height = Math.floor(h * dpr); }
-  var x = cv.getContext("2d"); x.setTransform(dpr, 0, 0, dpr, 0, 0); x.clearRect(0, 0, w, h);
+  var x = cv.getContext("2d"); x.setTransform(dpr, 0, 0, dpr, 0, 0);
+  x.fillStyle = "#080b10"; x.fillRect(0, 0, w, h);
+  x.strokeStyle = "rgba(236,238,242,.07)"; x.lineWidth = 1;
+  for (var gi = 1; gi < 4; gi++) { x.beginPath(); x.moveTo(0, h * gi / 4); x.lineTo(w, h * gi / 4); x.stroke(); }
   var cs = candles.slice(-70), lo = Infinity, hi = -Infinity;
   cs.forEach(function(c){ lo=Math.min(lo,c.l); hi=Math.max(hi,c.h); });
   if (hi - lo < 1) hi = lo + 1; lo -= (hi-lo)*.08; hi += (hi-lo)*.08;
   var yy = function(p){ return 4 + (1-(p-lo)/(hi-lo))*(h-8); }, cw=(w-8)/cs.length;
-  cs.forEach(function(c,i){ var up=c.c>=c.o, col=up?"#35D07F":"#EF5350", xx=4+i*cw; x.strokeStyle=x.fillStyle=col; x.lineWidth=1; x.beginPath(); x.moveTo(xx+cw/2,yy(c.h)); x.lineTo(xx+cw/2,yy(c.l)); x.stroke(); x.fillRect(xx+cw*.18,yy(Math.max(c.o,c.c)),Math.max(1,cw*.64),Math.max(1.5,Math.abs(yy(c.o)-yy(c.c)))); });
+  cs.forEach(function(c,i){ var up=c.c>=c.o, col=up?"#35D07F":"#EF5350", xx=4+i*cw; x.strokeStyle=x.fillStyle=col; x.lineWidth=1.4; x.beginPath(); x.moveTo(xx+cw/2,yy(c.h)); x.lineTo(xx+cw/2,yy(c.l)); x.stroke(); x.fillRect(xx+cw*.15,yy(Math.max(c.o,c.c)),Math.max(2,cw*.7),Math.max(2,Math.abs(yy(c.o)-yy(c.c)))); });
   x.setLineDash([4,3]); x.strokeStyle="rgba(240,180,41,.8)"; x.beginPath(); x.moveTo(0,yy(cs[cs.length-1].c)); x.lineTo(w,yy(cs[cs.length-1].c)); x.stroke(); x.setLineDash([]);
 }
 
