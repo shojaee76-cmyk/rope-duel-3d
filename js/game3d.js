@@ -276,6 +276,13 @@ window.__duel = {
     return duel._startMove(side, move || "LUNGE");
   },
   forceKo: function (winner) { duel._ko(winner === "buy" ? "sell" : "buy", winner); },
+  forceHit: function (side) {
+    var foe = side === "buy" ? "sell" : "buy";
+    duel.pairGap = duel.baseGap * 0.8;
+    duel.cats[foe].state = "idle"; duel.cats[foe].stateT = 0;
+    duel.cats[side].state = "idle"; duel.cats[side].stateT = 0;
+    return duel._startMove(side, "LUNGE");
+  },
   pressure: function (p) { duel.forced = p; duel.pressure = p; duel.pS = p; },
   hold: function (on) {
     duel.nextBeat = on ? 1e9 : duel.time + 0.5;

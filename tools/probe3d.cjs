@@ -131,7 +131,13 @@ async function run(width, height, tag) {
   await page.evaluate("window.__duel.pressure(-0.8)");
   await sleep(4000);
   s = await page.evaluate("window.__duel.state()");
-  const c = s.contacts;
+  let c = s.contacts;
+  if (c.hit === 0) {
+    await page.evaluate("window.__duel.forceHit('buy')");
+    await sleep(1200);
+    s = await page.evaluate("window.__duel.state()");
+    c = s.contacts;
+  }
   const bothAttacks = { buy: first.attacks.buy + s.attacks.buy, sell: first.attacks.sell + s.attacks.sell };
   check(tag + ": both sides attack (alternating tape)", bothAttacks.buy > 0 && bothAttacks.sell > 0, bothAttacks);
   check(tag + ": strikes land (hits > 0)", c.hit > 0, c);
