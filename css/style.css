@@ -107,7 +107,7 @@ body{
   letter-spacing:.005em;line-height:.95;color:var(--ink);
   text-shadow:0 2px 18px rgba(240,180,41,.18);
 }
-.brand-sub{font-size:10px;letter-spacing:.26em;color:var(--ink-faint);}
+.brand-sub{font-size:11px;letter-spacing:.22em;color:#8A909B;}
 
 .priceblock{display:flex;flex-direction:column;align-items:center;gap:2px;transform:translateY(-2px);}
 .price{

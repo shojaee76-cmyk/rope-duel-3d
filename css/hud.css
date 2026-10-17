@@ -47,7 +47,7 @@
   background:rgba(10,12,15,.92);border:1px solid var(--line-2);
   font-size:11px;letter-spacing:.06em;white-space:nowrap;
   box-shadow:0 12px 30px -12px rgba(0,0,0,.9);
-  animation:calloutIn .3s var(--ease-snap) both, calloutOut .5s var(--ease) 1.9s both;
+  animation:calloutOut .5s var(--ease) 1.9s both;
   will-change:transform,opacity;
 }
 .callout b{font-family:var(--font-mono);font-size:13px;letter-spacing:.01em;}

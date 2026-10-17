@@ -108,6 +108,7 @@ function callout(text, cls, x, y) {
   el.className = "callout " + (cls || "");
   el.innerHTML = text;
   var box = $("callouts");
+  el.dataset.born = String(Date.now());
   box.appendChild(el);
   var bw = el.offsetWidth, bh = el.offsetHeight;
   var px = x == null ? box.clientWidth / 2 : x;
