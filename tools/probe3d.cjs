@@ -85,7 +85,9 @@ async function run(width, height, tag) {
   const shown = parseFloat(hud.priceTxt.replace(/[$,]/g, ""));
   check(tag + ": price HUD matches feed", Math.abs(shown - hud.price) / hud.price < 0.001, { shown, feed: +hud.price.toFixed(1) });
   check(tag + ": pressure meter sums to 100%", Math.abs(hud.buyPct + hud.sellPct - 100) <= 2, { buy: hud.buyPct, sell: hud.sellPct });
-  check(tag + ": meter direction matches pressure", (hud.pressure >= 0) === (hud.buyPct >= 50), { pressure: +hud.pressure.toFixed(2), buy: hud.buyPct });
+  check(tag + ": meter direction matches pressure",
+    Math.abs(hud.pressure) < 0.05 ? Math.abs(hud.buyPct - 50) <= 2 : ((hud.pressure > 0) === (hud.buyPct > 50)),
+    { pressure: +hud.pressure.toFixed(2), buy: hud.buyPct });
   check(tag + ": HUD labels >= 10px", hud.labels.every((f) => f >= 10), hud.labels);
   check(tag + ": fighter state text present", /EN GARDE|WIND|STRIKE|RECOVER|GUARD|HOP|HIT|K\.O\.|WINS/.test(hud.stateBuy + hud.stateSell), [hud.stateBuy, hud.stateSell]);
   check(tag + ": venue labelled", /LIVE|SIM|SPOT/.test(hud.venue), hud.venue);
